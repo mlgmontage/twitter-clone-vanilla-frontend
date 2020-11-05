@@ -9,18 +9,23 @@ submit.addEventListener("click", async (event) => {
 
   event.preventDefault()
   const body = {
-    name: registerForm.get("login"),
+    login: registerForm.get("login"),
     password: registerForm.get("password"),
     name: registerForm.get("name"),
-    name: registerForm.get("lastname"),
+    lastname: registerForm.get("lastname"),
   }
 
   const registerRes = await fetch(`${host}api/routes/users/register`, {
-    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
     body: JSON.stringify(body)
   })
 
   const data = await registerRes.json()
 
   console.log(data)
+  console.log(JSON.stringify(body))
 })
