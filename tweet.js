@@ -4,6 +4,7 @@ const commentsBlock = document.querySelector('#commentsBlock')
 
 console.log(tweetId)
 
+// Fetching comments
 const fetchComments = async () => {
   const response = await fetch(`${host}api/routes/comments/${tweetId}`)
   const comments = await response.json()
@@ -31,3 +32,5 @@ const fetchComments = async () => {
 }
 
 fetchComments()
+
+// Posting comments
