@@ -10,7 +10,7 @@ const fetchTweets = async () => {
             <figure class="mb-3">
 
               <blockquote class="blockquote mb-4">
-                <a href="" class="text-dark text-decoration-none">${tweet.Tweet}</a>
+                <a href="./tweet.html#${tweet.TweetId}" class="text-dark text-decoration-none">${tweet.Tweet}</a>
               </blockquote>
 
               <figcaption class="blockquote-footer">
