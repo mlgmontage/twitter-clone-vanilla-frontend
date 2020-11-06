@@ -15,7 +15,7 @@ const fetchTweets = async () => {
 
               <figcaption class="blockquote-footer">
                 <span class="text-black">${tweet.name} ${tweet.lastname}</span> |
-                <a href="#" class="text-muted">@${tweet.login}</a>
+                <a href="./users.html#${tweet.UserId}" class="text-muted">@${tweet.login}</a>
               </figcaption>
 
               <hr />
