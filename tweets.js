@@ -1,11 +1,9 @@
-console.log("tweet")
 const tweetsBlock = document.querySelector("#tweetsBlock")
 const host = `http://localhost:8080/`
 
 const fetchTweets = async () => {
   const response = await fetch(`${host}api/routes/tweets`)
   const tweets = await response.json()
-  console.log(tweets)
 
   tweets.forEach(tweet => {
     tweetsBlock.innerHTML += `
@@ -20,9 +18,41 @@ const fetchTweets = async () => {
                 <a href="#" class="text-muted">@${tweet.login}</a>
               </figcaption>
 
+              <hr />
+
             </figure>
    `;
   })
 }
 
 fetchTweets()
+
+// Post tweets
+
+const tweetFormElm = document.querySelector("#tweetForm")
+const tweetSubmit = document.querySelector("#submitTweet")
+
+
+tweetSubmit.addEventListener("click", async (event) => {
+  event.preventDefault()
+  
+  const tweetForm = new FormData(tweetFormElm)
+  const body = {
+    UserId: 3,
+    Tweet: tweetForm.get("tweet")
+  }
+
+  const response = await fetch(`${host}api/routes/tweets/create`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'post',
+    body: JSON.stringify(body)
+  })
+  const data  = await response.json()
+
+  tweetFormElm.reset()
+  console.log(data)
+
+})
