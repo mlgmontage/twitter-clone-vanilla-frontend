@@ -1,13 +1,27 @@
-const userid = location.hash.slice(1)
-const host = `http://localhost:8080/`
-const tweetsBlock = document.querySelector("#tweetsBlock")
+const userid = location.hash.slice(1);
+const host = `http://localhost:8080/`;
+const tweetsBlock = document.querySelector("#tweetsBlock");
+const token = localStorage.getItem("token");
+
+// Redirecting unauthorized users
+if (!token) {
+  window.location.href = "./index.html";
+}
 
 const fetchUserTweets = async () => {
-  const response = await fetch(`${host}api/routes/tweets/user/${userid}`)
-  const tweets = await response.json()
-  console.log(tweets)
+  const response = await fetch(`${host}api/routes/tweets/user/${userid}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bareer ${token}`,
+    },
+    method: "get",
+  });
 
-  tweets.forEach(tweet => {
+  const tweets = await response.json();
+  console.log(tweets);
+
+  tweets.forEach((tweet) => {
     tweetsBlock.innerHTML += `
             <figure class="mb-3">
 
@@ -24,8 +38,7 @@ const fetchUserTweets = async () => {
 
             </figure>
    `;
-  })
-}
+  });
+};
 
-fetchUserTweets()
-
+fetchUserTweets();
