@@ -1,14 +1,17 @@
-const tweetId = location.hash.slice(1)
-const host = `http://localhost:8080/`
-const commentsBlock = document.querySelector('#commentsBlock')
-const tweetIndividual = document.querySelector("#tweetIndividual")
+const tweetId = location.hash.slice(1);
+const host = `http://localhost:8080/`;
+const commentsBlock = document.querySelector("#commentsBlock");
+const tweetIndividual = document.querySelector("#tweetIndividual");
 
-console.log(tweetId)
-
-// Tweet individual 
+// Tweet individual
 const fetchTweet = async () => {
-  const response = await fetch(`${host}api/routes/tweets/${tweetId}`)
-  const tweet = await response.json()
+  if (!localStorage.getItem("token")) {
+    window.location.href = "./index.html";
+    return;
+  }
+
+  const response = await fetch(`${host}api/routes/tweets/${tweetId}`);
+  const tweet = await response.json();
 
   tweetIndividual.innerHTML += `
     <figure class="mb-3">
@@ -22,17 +25,16 @@ const fetchTweet = async () => {
       </figcaption>
     </figure>
   `;
-  console.log(tweet[0])
-}
+};
 
 // Fetching comments
 const fetchComments = async () => {
-  const response = await fetch(`${host}api/routes/comments/${tweetId}`)
-  const comments = await response.json()
+  const response = await fetch(`${host}api/routes/comments/${tweetId}`);
+  const comments = await response.json();
 
-  console.log(comments)
+  console.log(comments);
 
-  comments.forEach(comment => {
+  comments.forEach((comment) => {
     commentsBlock.innerHTML += `
       <figure class="mb-3">
 
@@ -48,11 +50,11 @@ const fetchComments = async () => {
         <hr />
 
       </figure>
-    `
-  })
-}
+    `;
+  });
+};
 
-fetchComments()
-fetchTweet()
+fetchTweet();
+fetchComments();
 
 // Posting comments

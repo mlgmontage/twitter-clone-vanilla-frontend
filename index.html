@@ -39,10 +39,11 @@
 
         <!-- Login Form -->
         <div class="col-md-4 py-5">
-          <form action="">
+          <div id="loginMessage"></div>
+          <form action="" id="loginForm">
             <div class="mb-3">
               <label for="login" class="form-label">Write you login</label>
-              <input type="text" class="form-control" id="login" />
+              <input type="text" name="login" class="form-control" id="login" />
               <div class="form-text">Write your login</div>
             </div>
 
@@ -50,11 +51,16 @@
               <label for="password" class="form-label"
                 >Write you password</label
               >
-              <input type="password" class="form-control" id="password" />
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="password"
+              />
               <div class="form-text">Write your password</div>
             </div>
 
-            <button class="btn btn-secondary mr-2">Login</button> |
+            <button class="btn btn-secondary mr-2" id="submit">Login</button> |
             <a href="./register.html" class="mx-2">Register</a>
           </form>
         </div>
@@ -68,5 +74,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./main.js"></script>
+    <script src="./login.js"></script>
   </body>
 </html>
