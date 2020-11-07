@@ -3,6 +3,8 @@ const host = `http://localhost:8080/`;
 const commentsBlock = document.querySelector("#commentsBlock");
 const tweetIndividual = document.querySelector("#tweetIndividual");
 const token = localStorage.getItem("token");
+const commentFormElm = document.querySelector("#commentForm");
+const submitComment = document.querySelector("#submitComment");
 
 // Redirecting unauthorized users
 if (!token) {
@@ -50,8 +52,6 @@ const fetchComments = async () => {
 
   const comments = await response.json();
 
-  console.log(comments);
-
   comments.forEach((comment) => {
     commentsBlock.innerHTML += `
       <figure class="mb-3">
@@ -76,3 +76,27 @@ fetchTweet();
 fetchComments();
 
 // Posting comments
+submitComment.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const commentForm = new FormData(commentFormElm);
+  const body = {
+    TweetId: parseInt(tweetId),
+    Comment: commentForm.get("comment"),
+  };
+  console.log(body);
+
+  const response = await fetch(`${host}api/routes/comments/create`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bareer ${token}`,
+    },
+    method: "post",
+    body: JSON.stringify(body),
+  });
+
+  const comment = await response.json();
+
+  console.log(comment);
+});
