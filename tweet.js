@@ -2,6 +2,12 @@ const tweetId = location.hash.slice(1);
 const host = `http://localhost:8080/`;
 const commentsBlock = document.querySelector("#commentsBlock");
 const tweetIndividual = document.querySelector("#tweetIndividual");
+const token = localStorage.getItem("token");
+
+// Redirecting unauthorized users
+if (!token) {
+  window.location.href = "./index.html";
+}
 
 // Tweet individual
 const fetchTweet = async () => {
@@ -10,7 +16,13 @@ const fetchTweet = async () => {
     return;
   }
 
-  const response = await fetch(`${host}api/routes/tweets/${tweetId}`);
+  const response = await fetch(`${host}api/routes/tweets/${tweetId}`, {
+    headers: {
+      Authorization: `Bareer ${token}`,
+    },
+    method: "get",
+  });
+
   const tweet = await response.json();
 
   tweetIndividual.innerHTML += `
@@ -29,7 +41,13 @@ const fetchTweet = async () => {
 
 // Fetching comments
 const fetchComments = async () => {
-  const response = await fetch(`${host}api/routes/comments/${tweetId}`);
+  const response = await fetch(`${host}api/routes/comments/${tweetId}`, {
+    headers: {
+      Authorization: `Bareer ${token}`,
+    },
+    method: "get",
+  });
+
   const comments = await response.json();
 
   console.log(comments);
