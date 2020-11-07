@@ -1,15 +1,20 @@
 const tweetsBlock = document.querySelector("#tweetsBlock");
 const host = `http://localhost:8080/`;
+const token = localStorage.getItem("token");
+
+// Redirecting unauthorized users
+if (!token) {
+  window.location.href = "./index.html";
+}
 
 const fetchTweets = async () => {
-  // Redirecting unauthorized users
+  const response = await fetch(`${host}api/routes/tweets`, {
+    headers: {
+      Authorization: `Bareer ${token}`,
+    },
+    method: "get",
+  });
 
-  if (!localStorage.getItem("token")) {
-    window.location.href = "./index.html";
-    return;
-  }
-
-  const response = await fetch(`${host}api/routes/tweets`);
   const tweets = await response.json();
 
   tweets.forEach((tweet) => {
@@ -52,6 +57,7 @@ tweetSubmit.addEventListener("click", async (event) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: `Bareer ${token}`,
     },
     method: "post",
     body: JSON.stringify(body),

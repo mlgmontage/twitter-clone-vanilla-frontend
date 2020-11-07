@@ -29,6 +29,7 @@ submit.addEventListener("click", async (e) => {
     // saving to localStorage
     console.log(data);
     localStorage.setItem("token", data.token);
+    window.location.href = "./tweets.html";
   } else {
     loginMessage.innerHTML = `
       <div class="alert alert-danger">${data.message}</div>
