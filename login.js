@@ -5,6 +5,10 @@ const submit = document.querySelector("#submit");
 const host = `http://localhost:8080/`;
 const loginMessage = document.querySelector("#loginMessage");
 
+if (localStorage.getItem("token")) {
+  loginFormElm.classList.add("d-none");
+}
+
 submit.addEventListener("click", async (e) => {
   e.preventDefault();
 
