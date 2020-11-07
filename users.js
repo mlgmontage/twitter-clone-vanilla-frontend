@@ -18,6 +18,12 @@ const fetchUserTweets = async () => {
     method: "get",
   });
 
+  if (response.status == 401 || response.status == 403) {
+    localStorage.clear();
+    window.location.href = "./index.html";
+    return;
+  }
+
   const tweets = await response.json();
   console.log(tweets);
 

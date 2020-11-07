@@ -25,6 +25,12 @@ const fetchTweet = async () => {
     method: "get",
   });
 
+  if (response.status == 401 || response.status == 403) {
+    localStorage.clear();
+    window.location.href = "./index.html";
+    return;
+  }
+
   const tweet = await response.json();
 
   tweetIndividual.innerHTML += `
@@ -49,6 +55,12 @@ const fetchComments = async () => {
     },
     method: "get",
   });
+
+  if (response.status == 401 || response.status == 403) {
+    localStorage.clear();
+    window.location.href = "./index.html";
+    return;
+  }
 
   const comments = await response.json();
 
