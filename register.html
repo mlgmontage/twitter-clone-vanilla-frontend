@@ -45,10 +45,17 @@
           <hr />
           <h2 class="text-center">Register</h2>
           <hr />
+          <div id="alert-box"></div>
           <form id="registerForm" action="">
             <div class="mb-3">
               <label for="login" class="form-label">Login</label>
-              <input id="login" name="login" type="text" class="form-control" />
+              <input
+                id="login"
+                name="login"
+                type="text"
+                class="form-control"
+                required
+              />
               <div class="form-text">Your unique login</div>
             </div>
 
@@ -59,6 +66,7 @@
                 name="password"
                 type="password"
                 class="form-control"
+                required
               />
               <div class="form-text">It should be more than 6 characters</div>
             </div>
@@ -70,6 +78,7 @@
                 name="name"
                 type="text"
                 class="form-control"
+                required
               />
               <div class="form-text">Your name</div>
             </div>
@@ -81,6 +90,7 @@
                 name="lastname"
                 type="text"
                 class="form-control"
+                required
               />
               <div class="form-text">Your lastname</div>
             </div>
