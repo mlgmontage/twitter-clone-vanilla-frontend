@@ -12,13 +12,13 @@ if (!token) {
 }
 
 // Tweet individual
-const fetchTweet = async () => {
+const fetchTweet = async (id) => {
   if (!localStorage.getItem("token")) {
     window.location.href = "./index.html";
     return;
   }
 
-  const response = await fetch(`${host}api/routes/tweets/${tweetId}`, {
+  const response = await fetch(`${host}api/routes/tweets/${id}`, {
     headers: {
       Authorization: `Bareer ${token}`,
     },
@@ -84,7 +84,7 @@ const fetchComments = async () => {
   });
 };
 
-fetchTweet();
+fetchTweet(tweetId);
 fetchComments();
 
 // Posting comments

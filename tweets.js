@@ -68,8 +68,26 @@ tweetSubmit.addEventListener("click", async (event) => {
     method: "post",
     body: JSON.stringify(body),
   });
-  const data = await response.json();
+  const tweet = await response.json();
 
   tweetFormElm.reset();
-  console.log(data);
+  console.log(tweet);
+
+  tweetsBlock.innerHTML =
+    `
+            <figure class="mb-3">
+
+              <blockquote class="blockquote mb-4">
+                <a href="./tweet.html#${tweet[0].TweetId}" class="text-dark text-decoration-none">${tweet[0].Tweet}</a>
+              </blockquote>
+
+              <figcaption class="blockquote-footer">
+                <span class="text-black">${tweet[0].name} ${tweet[0].lastname}</span> |
+                <a href="./users.html#${tweet[0].UserId}" class="text-muted">@${tweet[0].login}</a>
+              </figcaption>
+
+              <hr />
+
+            </figure>
+   ` + tweetsBlock.innerHTML;
 });
