@@ -32,6 +32,7 @@ const fetchTweet = async (id) => {
   }
 
   const tweet = await response.json();
+  const dateFromNow = moment(tweet[0].Date).fromNow();
 
   tweetIndividual.innerHTML += `
     <figure class="mb-3">
@@ -41,7 +42,8 @@ const fetchTweet = async (id) => {
 
       <figcaption class="blockquote-footer">
         <span>${tweet[0].name} ${tweet[0].lastname}</span> |
-        <a href="#" class="text-muted">@${tweet[0].login}</a>
+        <a href="#" class="text-muted">@${tweet[0].login}</a> |
+        <span class="text-muted" >${dateFromNow}</span>
       </figcaption>
     </figure>
   `;
@@ -65,6 +67,7 @@ const fetchComments = async () => {
   const comments = await response.json();
 
   comments.forEach((comment) => {
+    const dateFromNow = moment(comment.Date).fromNow();
     commentsBlock.innerHTML += `
       <figure class="mb-3">
 
@@ -74,7 +77,8 @@ const fetchComments = async () => {
 
         <figcaption class="blockquote-footer">
           <span class="text-black">${comment.name} ${comment.lastname}</span> |
-          <a href="#" class="text-muted">@${comment.login}</a>
+          <a href="#" class="text-muted">@${comment.login}</a> |
+          <span class="text-muted">${dateFromNow}</span>
         </figcaption>
 
         <hr />
@@ -111,6 +115,7 @@ submitComment.addEventListener("click", async (e) => {
   const comment = await response.json();
 
   console.log(comment);
+  const dateFromNow = moment(comment[0].Date).fromNow();
   commentsBlock.innerHTML =
     `
       <figure class="mb-3">
@@ -121,7 +126,8 @@ submitComment.addEventListener("click", async (e) => {
 
         <figcaption class="blockquote-footer">
           <span class="text-black">${comment[0].name} ${comment[0].lastname}</span> |
-          <a href="#" class="text-muted">@${comment[0].login}</a>
+          <a href="#" class="text-muted">@${comment[0].login}</a> |
+          <span class="text-muted">${dateFromNow}</span>
         </figcaption>
 
         <hr />

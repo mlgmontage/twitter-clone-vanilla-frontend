@@ -24,6 +24,7 @@ const fetchTweets = async () => {
   const tweets = await response.json();
 
   tweets.forEach((tweet) => {
+    const dateFromNow = moment(tweet.Date).fromNow();
     tweetsBlock.innerHTML += `
             <figure class="mb-3">
 
@@ -33,7 +34,8 @@ const fetchTweets = async () => {
 
               <figcaption class="blockquote-footer">
                 <span class="text-black">${tweet.name} ${tweet.lastname}</span> |
-                <a href="./users.html#${tweet.UserId}" class="text-muted">@${tweet.login}</a>
+                <a href="./users.html#${tweet.UserId}" class="text-muted">@${tweet.login}</a> |
+                <span class="text-muted">${dateFromNow}</span>
               </figcaption>
 
               <hr />
@@ -72,6 +74,7 @@ tweetSubmit.addEventListener("click", async (event) => {
 
   tweetFormElm.reset();
   console.log(tweet);
+  const dateFromNow = moment(tweet[0].Date).fromNow();
 
   tweetsBlock.innerHTML =
     `
@@ -83,7 +86,8 @@ tweetSubmit.addEventListener("click", async (event) => {
 
               <figcaption class="blockquote-footer">
                 <span class="text-black">${tweet[0].name} ${tweet[0].lastname}</span> |
-                <a href="./users.html#${tweet[0].UserId}" class="text-muted">@${tweet[0].login}</a>
+                <a href="./users.html#${tweet[0].UserId}" class="text-muted">@${tweet[0].login}</a> |
+                <span class="text-muted">${dateFromNow}</span>
               </figcaption>
 
               <hr />
