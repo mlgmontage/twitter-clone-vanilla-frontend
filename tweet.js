@@ -111,4 +111,21 @@ submitComment.addEventListener("click", async (e) => {
   const comment = await response.json();
 
   console.log(comment);
+  commentsBlock.innerHTML =
+    `
+      <figure class="mb-3">
+
+        <blockquote class="blockquote mb-4">
+          <div class="text-dark text-decoration-none">${comment[0].Comment}</div>
+        </blockquote>
+
+        <figcaption class="blockquote-footer">
+          <span class="text-black">${comment[0].name} ${comment[0].lastname}</span> |
+          <a href="#" class="text-muted">@${comment[0].login}</a>
+        </figcaption>
+
+        <hr />
+
+      </figure>
+    ` + commentsBlock.innerHTML;
 });
