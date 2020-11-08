@@ -25,7 +25,6 @@ const fetchUserTweets = async () => {
   }
 
   const tweets = await response.json();
-  console.log(tweets);
 
   tweets.forEach((tweet) => {
     const dateFromNow = moment(tweet.Date).fromNow();

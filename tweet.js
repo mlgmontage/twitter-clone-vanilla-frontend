@@ -42,7 +42,7 @@ const fetchTweet = async (id) => {
 
       <figcaption class="blockquote-footer">
         <span>${tweet[0].name} ${tweet[0].lastname}</span> |
-        <a href="#" class="text-muted">@${tweet[0].login}</a> |
+        <a href="./users.html#${tweet[0].UserId}" class="text-muted">@${tweet[0].login}</a> |
         <span class="text-muted" >${dateFromNow}</span>
       </figcaption>
     </figure>
@@ -77,7 +77,7 @@ const fetchComments = async () => {
 
         <figcaption class="blockquote-footer">
           <span class="text-black">${comment.name} ${comment.lastname}</span> |
-          <a href="#" class="text-muted">@${comment.login}</a> |
+          <a href="./users.html#${comment.UserId}" class="text-muted">@${comment.login}</a> |
           <span class="text-muted">${dateFromNow}</span>
         </figcaption>
 
@@ -126,7 +126,7 @@ submitComment.addEventListener("click", async (e) => {
 
         <figcaption class="blockquote-footer">
           <span class="text-black">${comment[0].name} ${comment[0].lastname}</span> |
-          <a href="#" class="text-muted">@${comment[0].login}</a> |
+          <a href="./users.html#${comment[0].UserId}" class="text-muted">@${comment[0].login}</a> |
           <span class="text-muted">${dateFromNow}</span>
         </figcaption>
 
