@@ -28,6 +28,7 @@ const fetchUserTweets = async () => {
   console.log(tweets);
 
   tweets.forEach((tweet) => {
+    const dateFromNow = moment(tweet.Date).fromNow();
     tweetsBlock.innerHTML += `
             <figure class="mb-3">
 
@@ -37,7 +38,8 @@ const fetchUserTweets = async () => {
 
               <figcaption class="blockquote-footer">
                 <span class="text-black">${tweet.name} ${tweet.lastname}</span> |
-                <a href="./users.html#${tweet.UserId}" class="text-muted">@${tweet.login}</a>
+                <a href="./users.html#${tweet.UserId}" class="text-muted">@${tweet.login}</a> |
+                <span class="text-muted">${dateFromNow}</span>
               </figcaption>
 
               <hr />
